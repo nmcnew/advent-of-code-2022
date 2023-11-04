@@ -59,12 +59,12 @@ pub fn get_score_result(input: &String) -> i32 {
     hands.insert(scissors.ref_value, scissors);
 
     input.split("\n").map(|round| {
-        let opponent_hand = hands.get(&round.chars().nth(0).unwrap()).unwrap();
-        let resolution = round.chars().nth(2).unwrap();
+        let opponent_hand = hands.get(&round.chars().nth(0).expect("Malformed round")).expect("Round contains hand that doesn't exist");
+        let resolution = round.chars().nth(2).expect("Malformed Round");
         let round_result = match resolution {
-            'X' => hands.get(&opponent_hand.beats).unwrap().value ,
+            'X' => hands.get(&opponent_hand.beats).expect("HashMap was not setup correctly").value ,
             'Y' => opponent_hand.value + 3,
-            'Z' => hands.get(&opponent_hand.loses).unwrap().value + 6,
+            'Z' => hands.get(&opponent_hand.loses).expect("HashMap was not setup correctly").value + 6,
             _ => panic!("Unknown resolution value"),
         };
         return round_result;
