@@ -121,7 +121,12 @@ fn run_day_02(){
     println!("You should get {} points if you follow the elf's advice", result_score);
 }
 fn run_day_03(){
-    println!("Day 03 is not implented yet");
+    let input = fs::read_to_string("data/day_03.txt")
+    .expect("Day 03 data file should exist");
+    let priority_score = solutions::day_03::run_part1(&input);
+    println!("The sum of priorities is {}", priority_score);
+    let priority_score = solutions::day_03::run_part2(&input);
+    println!("The sum of badge priorities is {}", priority_score);
 }
 fn run_day_04(){
     println!("Day 04 is not implented yet");
