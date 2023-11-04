@@ -113,7 +113,12 @@ fn run_day_01(){
     println!("The biggest three packs are {}, {}, and {}, for a total of {}", elves[0], elves[1], elves[2], elves.iter().sum::<i32>());
 }
 fn run_day_02(){
-    println!("Day 02 is not implented yet");
+    let input = fs::read_to_string("data/day_02.txt")
+    .expect("File should exist before calling this method");
+    let score = solutions::day_02::get_score(&input);
+    println!("You should get {} points", score);
+    let result_score = solutions::day_02::get_score_result(&input);
+    println!("You should get {} points if you follow the elf's advice", result_score);
 }
 fn run_day_03(){
     println!("Day 03 is not implented yet");
