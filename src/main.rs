@@ -4,7 +4,6 @@ mod solutions;
 use std::fs;
 use clap::Parser;
 use std::io::ErrorKind;
-use crate::solutions::day_01;
 
 fn main() -> std::io::Result<()> {
     let args = Args::parse();
@@ -32,12 +31,6 @@ fn main() -> std::io::Result<()> {
         _ => println!("Did not find a day command"),
     }
     Ok(())
-
-    // let mut day = 1;
-    // match day {
-    //     1 => run_day_01(),
-    //     _ => println!("No input?")
-    // }
 }
 
 /// Advent of Code 2022 Runner
@@ -55,7 +48,9 @@ struct Args {
 fn run_day_01(){
     let values = fs::read_to_string("data/day_01.txt")
     .expect("Data file does not exist");
-    let elf = day_01::get_packrat(values)
+    let elf = solutions::day_01::get_packrat(&values)
         .expect("This shouldn't be failing");
-    println!("You should ask elf {} for some food, he has {} calories on him", elf.0, elf.1);
+    println!("You should ask elf {} for some food, they have {} calories on them", elf.0, elf.1);
+    let elves = solutions::day_01::get_packrats(values);
+    println!("The biggest three packs are {}, {}, and {}, for a total of {}", elves[0], elves[1], elves[2], elves.iter().sum::<i32>());
 }
